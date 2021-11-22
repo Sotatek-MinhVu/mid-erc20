@@ -16,6 +16,13 @@ contract Ownable {
   );
 
   /**
+    * @dev Initializes the contract setting the deployer as the initial owner.
+    */
+  constructor() {
+      _transferOwnership(msg.sender);
+  }
+
+  /**
    * @dev Throws if called by any account other than the owner.
    */
   modifier onlyOwner() {
