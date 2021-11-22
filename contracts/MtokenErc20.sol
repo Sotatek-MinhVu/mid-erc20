@@ -16,19 +16,19 @@ contract Mtoken is ERC20, AccessRole, Pausable {
     _;
   }
 
-  function mint(address account, uint256 amount) public virtual isMinter requireSupply whenNotPaused{
+  function mint(address account, uint256 amount) public isMinter requireSupply whenNotPaused{
     _mint(account, amount);
   }
 
-  function burn(address account, uint256 amount) public virtual isBurner whenNotPaused{
+  function burn(address account, uint256 amount) public isBurner whenNotPaused{
     _burn(account, amount);
   }
 
-  function pauseAdmin() public virtual isAdmin {
+  function pauseAdmin() public isAdmin {
     _pause();
   } 
 
-  function unPauseAdmin() public virtual isAdmin {
+  function unPauseAdmin() public isAdmin {
     _unpause();
   } 
 

@@ -12,29 +12,25 @@ contract AccessRole is Context, Ownable {
   bytes32 private constant MINT_ROLE =  0x3100000000000000000000000000000000000000000000000000000000000000;
   bytes32 private constant BURN_ROLE =  0x3200000000000000000000000000000000000000000000000000000000000000;
 
-  constructor() {
-    _roles[ADMIN_ROLE][_msgSender()] = true;
-  }
-
   modifier isAdmin() {
-    _checkAdmin();
+    require(_checkAdmin(), "User not is Admin");
     _;
   }
 
   modifier isMinter(){
-    _checkMinter();
+    require(_checkMinter(), "User not is Minter");
     _;
   }
 
   modifier isBurner() {
-    _checkBurnter();
+    require(_checkBurnter(), "User not is Burner");
     _;
   }
 
   /**
   * @dev Check `role` with account; 
   */
-  function _hasRole(bytes32 role, address account) internal virtual returns (bool) {
+  function _hasRole(bytes32 role, address account) internal view returns (bool) {
     return _roles[role][account];
   }
 
@@ -49,15 +45,15 @@ contract AccessRole is Context, Ownable {
       }
   }
 
-  function grantAdminRole(address account) public virtual onlyOwner {
+  function grantAdminRole(address account) public onlyOwner {
     _grantRole(ADMIN_ROLE, account);
   }
 
-  function grantMintRole(address account) public virtual isAdmin {
+  function grantMintRole(address account) public isAdmin {
     _grantRole(MINT_ROLE, account);
   }
 
-  function grantBurnRole(address account) public virtual isAdmin {
+  function grantBurnRole(address account) public isAdmin {
     _grantRole(BURN_ROLE, account);
   }
 
@@ -73,4 +69,15 @@ contract AccessRole is Context, Ownable {
     return _hasRole(ADMIN_ROLE, msg.sender);
   }
 
+  function getMinter(address account) public view returns(bool) {
+    return _hasRole(MINT_ROLE,account);
+  }
+
+  function getAdmin(address account) public view returns(bool) {
+    return _hasRole(ADMIN_ROLE,account);
+  }
+
+  function getBurnter(address account) public view returns(bool) {
+    return _hasRole(BURN_ROLE,account);
+  }
 }
