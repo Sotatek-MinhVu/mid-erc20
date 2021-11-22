@@ -13,3 +13,11 @@ npx hardhat node
 node scripts/sample-script.js
 npx hardhat help
 ```
+
+# shell deploy on rinkeby testnet
+
+npm run deploy-rinkeby
+
+# Project deploy on rinkeby testnet
+
+- https://rinkeby.etherscan.io/address/0x4094167d57213C4c01F865D9A81cB8FFE155Db23
