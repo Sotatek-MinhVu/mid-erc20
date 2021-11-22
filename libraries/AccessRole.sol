@@ -16,6 +16,21 @@ contract AccessRole is Context, Ownable {
     _roles[ADMIN_ROLE][_msgSender()] = true;
   }
 
+  modifier isAdmin() {
+    _checkAdmin();
+    _;
+  }
+
+  modifier isMinter(){
+    _checkMinter();
+    _;
+  }
+
+  modifier isBurner() {
+    _checkBurnter();
+    _;
+  }
+
   /**
   * @dev Check `role` with account; 
   */
@@ -34,15 +49,15 @@ contract AccessRole is Context, Ownable {
       }
   }
 
-  function grantAdminRole(address account) public virtual {
+  function grantAdminRole(address account) public virtual onlyOwner {
     _grantRole(ADMIN_ROLE, account);
   }
 
-  function grantMintRole(address account) public virtual {
+  function grantMintRole(address account) public virtual isAdmin {
     _grantRole(MINT_ROLE, account);
   }
 
-  function grantBurnRole(address account) public virtual {
+  function grantBurnRole(address account) public virtual isAdmin {
     _grantRole(BURN_ROLE, account);
   }
 

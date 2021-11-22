@@ -11,21 +11,6 @@ contract Mtoken is ERC20, AccessRole, Pausable {
     _mint(msg.sender, 0);
   }
 
-  modifier isMinter(){
-    _checkMinter();
-    _;
-  }
-
-  modifier isBurner() {
-    _checkBurnter();
-    _;
-  }
-
-  modifier isAdmin() {
-    _checkAdmin();
-    _;
-  }
-
   modifier requireSupply() {
     require(totalSupply() < 1 * 10 ** 6);
     _;
