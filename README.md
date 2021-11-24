@@ -20,4 +20,9 @@ npm run deploy-rinkeby
 
 # Project deploy on rinkeby testnet
 
+
+## ERC20
 - https://rinkeby.etherscan.io/address/0x4094167d57213C4c01F865D9A81cB8FFE155Db23
+
+## ERC721
+- https://rinkeby.etherscan.io/address/0x774C94b559ddC074d47D948E0fC42616D1AB3755

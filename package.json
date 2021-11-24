@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy-rinkeby": "hardhat run scripts/deploy.js --network rinkeby"
+    "deploy-rinkeby": "hardhat run scripts/deploy.js --network rinkeby",
+    "deploy721-rinkeby": "hardhat run scripts/deployERC721.js --network rinkeby"
   },
   "keywords": [],
   "author": "",
