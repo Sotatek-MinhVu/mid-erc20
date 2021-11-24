@@ -14,11 +14,11 @@ contract MtokenErc721 is ERC721 {
       string memory symbol_
   ) ERC721(name_, symbol_) {}
 
-  function mint(address _to) public returns(uint256) {
+  function mint() public returns(uint256) {
     _tokenIds.increment();
 
     uint256 newTokenId = _tokenIds.current();
-    _mint(_to, newTokenId);
+    _mint(msg.sender, newTokenId);
 
     return newTokenId;
   }
